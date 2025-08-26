@@ -18,7 +18,7 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6); /* opacity overlay */
+      background: rgba(0,0,0,0.6);
       z-index: 0;
     }
     .container {
@@ -33,12 +33,14 @@
     h1 {
       font-weight: 600;
       margin-bottom: 20px;
+      font-size: 2rem;
     }
     .tabs {
       display: flex;
       justify-content: center;
       gap: 20px;
       margin-bottom: 30px;
+      flex-wrap: wrap; /* ✅ allows wrapping on small screens */
     }
     .tab {
       padding: 10px 20px;
@@ -47,6 +49,9 @@
       cursor: pointer;
       font-weight: 600;
       transition: background 0.3s;
+      flex: 1; /* ✅ makes tabs evenly distributed on phones */
+      min-width: 120px;
+      text-align: center;
     }
     .tab.active {
       background: #ff9800;
@@ -63,7 +68,7 @@
       margin-bottom: 25px;
     }
     .menu-category h2 {
-      font-size: 1.4em;
+      font-size: 1.3em;
       border-bottom: 2px solid #ff9800;
       padding-bottom: 5px;
       margin-bottom: 10px;
@@ -71,11 +76,39 @@
     .menu-item {
       display: flex;
       justify-content: space-between;
-      padding: 5px 0;
+      padding: 8px 0;
       border-bottom: 1px dashed #ffffff55;
+      flex-wrap: wrap; /* ✅ allows text wrapping */
+    }
+    .menu-item span {
+      font-size: 1rem;
+      flex: 1;
     }
     .price {
       font-weight: 600;
+      text-align: right;
+      min-width: 80px;
+    }
+
+    /* ✅ Mobile responsiveness */
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 15px;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      .menu-category h2 {
+        font-size: 1.1rem;
+      }
+      .menu-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .price {
+        text-align: left;
+        margin-top: 3px;
+      }
     }
   </style>
 </head>
@@ -124,7 +157,6 @@
         <div class="menu-item"><span>Wine by Glass</span> <span class="price">5,000 Rwf</span></div>
         <div class="menu-item"><span>Toti’s (Cocktail / Spirit)</span> <span class="price">7,000 Rwf</span></div>
       </div>
-      <!-- (You can keep adding the other categories like Bottled Wines, Whisky, Cognac etc. same way) -->
     </div>
   </div>
 
